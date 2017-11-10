@@ -1,2 +1,5 @@
 # Ignore object files
 obj
+
+# Ignore generated files
+generate_predicates
