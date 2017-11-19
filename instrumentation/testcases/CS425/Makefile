@@ -9,10 +9,10 @@ all:
 	make server_exe
 	make client_exe
 
-$(OBJ)/server.o: server/server.c $(DEPS)
+$(OBJ)/server.o: server/rose_server.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-$(OBJ)/client.o: client/client.c $(DEPS)
+$(OBJ)/client.o: client/rose_client.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 server_exe: $(OBJ)/server.o
