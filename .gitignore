@@ -7,3 +7,5 @@ count_true_branch
 gen_line_num
 a.out
 output.csv
+server_exe
+client_exe
