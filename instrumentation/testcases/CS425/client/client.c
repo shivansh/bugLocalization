@@ -25,6 +25,10 @@ handle_server_connection(int  server_port,
     sockfd = make_socket(server_ip, server_port, &server);
     bzero(buffer, BUFSIZE);
 
+#ifdef BUG1
+    sockfd = NULL;
+#endif
+
     /* Get the username and password from client. */
     sprintf(buffer, "%s", username);
     send(sockfd, buffer, strlen(username), 0);
@@ -64,12 +68,21 @@ handle_server_connection(int  server_port,
     if (!safe_read(sockfd, buffer))
         exit(EXIT_SUCCESS);
 
+#ifdef BUG2
+    sprintf(buffer, "%s", "no-op");
+#endif
+
     if (!strncmp(buffer, "Hello", 5)) {
         printf("%s\n", buffer);
         bzero(buffer, 5);
 
         printf("Enter the filename: ");
         scanf("%s", filename);
+
+#ifdef BUG3
+        sprintf(filename, "no-op");
+#endif
+
         sprintf(buffer, "%s", filename);
         send(sockfd, buffer, BUFSIZE, 0);
 
@@ -80,6 +93,10 @@ handle_server_connection(int  server_port,
         /* Receive file transfer initiation cue. */
         if (!strncmp(buffer, "Initiating", 10)) {
             fp = fopen(filename, "w");
+
+#ifdef BUG4
+            fp = NULL;
+#endif
             printf("+--------------------------+\n"
                    "| Initiating file transfer |\n"
                    "+--------------------------+\n");
@@ -130,6 +147,10 @@ main(int argc, char **argv)
     }
 
     server_port = atoi(argv[2]);
+
+#ifdef BUG5
+    server_port = -1;
+#endif
 
     /* Extract username, password and server IP from argv[1]. */
     int i = 0;
