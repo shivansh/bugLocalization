@@ -1,5 +1,9 @@
 # Ignore object files
-obj
+*.o
 
 # Ignore generated files
 generate_predicates
+count_true_branch
+gen_line_num
+a.out
+output.csv
