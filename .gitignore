@@ -12,4 +12,3 @@ client_exe
 __pycache__
 .vscode
 *.pyc
-output_data/
