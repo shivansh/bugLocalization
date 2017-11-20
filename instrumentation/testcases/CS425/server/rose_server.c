@@ -23,7 +23,7 @@ void increment_if(int index)
 #define SERVER
 #include "standard.h"
 #define MAX_CONN 5
-#define BASEDIR "./server/"
+#define BASEDIR "./server/serve_dir/"
 uint16_t sockfd;
 struct sockaddr_in client;
 char buffer[1024];
@@ -90,7 +90,7 @@ void handle_client_connection(uint16_t sockfd)
   int valid_user = 0;
   char username[256];
   char password[256];
-  char base_dir[256] = "./server/";
+  char base_dir[256] = "./server/serve_dir/";
   FILE *fp;
   while(1){
     bzero(buffer,1024);

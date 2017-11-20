@@ -2,7 +2,7 @@
 #include "standard.h"
 
 #define MAX_CONN 5
-#define BASEDIR "./server/"
+#define BASEDIR "./server/serve_dir/"
 
 uint16_t sockfd;
 struct sockaddr_in client;
