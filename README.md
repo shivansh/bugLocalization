@@ -2,7 +2,7 @@
 
 ## Instructions
 ### Instrumentation step
-- Update the shared library path appropriately.  
+- Update the shared library path appropriately.
   For e.g. in my machine -
   ```
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$rose_dir/lib
@@ -23,13 +23,12 @@
 
 - Start the server from [instrumentation/testcases/ftp](instrumentation/testcases/ftp) -
   ```
-  ./server_exe 127.0.0.1 6061
+  ./server_exe <server_ip> <server_port>
   ```
-  **NOTE:** The IP and port are hardcoded currently. This will be fixed very soon.
 
 - From [instrumentation](instrumentation), execute -
   ```
-  ./main.sh
+  ./main.sh <server_ip> <server_port>
   ```
 
 ### Drawing inferences from the collected data

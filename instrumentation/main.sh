@@ -1,5 +1,7 @@
 #!/bin/bash
 # Driver script.
+# Argument 1: Server IP
+# Argument 2: Server port
 
 set -e
 
@@ -18,12 +20,14 @@ serve_dir="server/serve_dir"
     touch predicate_values
 
     for file in $serve_dir/*; do
-        ./client_exe shivansh:rai@127.0.0.1 6061 $(basename $file) &>> predicate_values
+        echo "-- Requesting file $file --"
+        ./client_exe shivansh:rai@$1 $2 $(basename $file) &>> predicate_values
         sleep .5
     done
 
     # Add an instance which is guaranteed to fail.
-    ./client_exe shivansh:rai@127.0.0.1 6061 "pingu" &>> predicate_values
+    echo "-- Requesting an invalid file --"
+    ./client_exe shivansh:rai@$1 $2 "pingu" &>> predicate_values
 )
 
 # Collect the generated values of predicates in different runs appropriately.
