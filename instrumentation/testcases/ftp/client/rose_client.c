@@ -99,6 +99,7 @@ void handle_server_connection(int server_port,char *server_ip,char *username,cha
       printf("%s\n",buffer);
       bzero(buffer,5);
 #ifdef BUG3
+      sprintf(filename,"%s","no-op");
 #endif
       sprintf(buffer,"%s",filename);
       send(sockfd,buffer,1024,0);

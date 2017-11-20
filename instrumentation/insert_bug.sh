@@ -3,7 +3,7 @@
 
 set -e
 
-filename="testcases/CS425/include/standard.h"
+filename="testcases/ftp/include/standard.h"
 bug_identifier=$(tail -1 $filename)
 bug_count=5
 

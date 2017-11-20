@@ -2,7 +2,7 @@ CC=	gcc
 OBJ=	./obj
 INCLUDE=./include
 CFLAGS=	-I$(INCLUDE)
-_DEPS= standard.h
+_DEPS=  standard.h
 DEPS=	$(patsubst %, $(INCLUDE)/%, $(_DEPS))
 
 all:

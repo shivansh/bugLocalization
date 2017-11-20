@@ -12,16 +12,16 @@
   ```
   make
   ```
-  This will instrument the client-server files available at [instrumentation/testcases/CS425].
+  This will instrument the client-server files available at [instrumentation/testcases/ftp].
 
 ### Collecting predicate values
-- Build the client-server framework from [instrumentation/testcases/CS425](instrumentation/testcases/CS425) -
+- Build the client-server framework from [instrumentation/testcases/ftp](instrumentation/testcases/ftp) -
   ```
   make
   ```
   **NOTE:** Ignore the generated warnings.
 
-- Start the server from [instrumentation/testcases/CS425](instrumentation/testcases/CS425) -
+- Start the server from [instrumentation/testcases/ftp](instrumentation/testcases/ftp) -
   ```
   ./server_exe 127.0.0.1 6061
   ```
