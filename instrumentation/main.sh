@@ -7,6 +7,7 @@ serve_dir="server/serve_dir"
 
 # Insert a random bug in client code.
 ./insert_bug.sh
+./instrument_CS425.sh
 
 (
     cd testcases/CS425
