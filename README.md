@@ -1,4 +1,12 @@
 # Simultaneous identification of multiple bugs
+_**NOTE: The current state of the README is minimal. This will be updated properly very soon.**_
+
+## Implementation overview
+* The instrumentation framework is imported from and built on top of [shivansh/branchCorrelations](https://github.com/shivansh/branchcorrelations).
+* The testing framework is imported from and built on top of [shivansh/CS425](https://github.com/shivansh/CS425).
+
+## Dependencies
+* [Rose compiler](http://rosecompiler.org/)
 
 ## Instructions
 ### Instrumentation step
@@ -8,25 +16,25 @@
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$rose_dir/lib
   ```
 
-- From [instrumentation](instrumentation), execute -
+- From [`instrumentation`](instrumentation), execute -
   ```
   make
   ```
-  This will instrument the client-server files available at [instrumentation/testcases/ftp].
+  This will instrument the client-server files available at [`instrumentation/testcases/ftp`](instrumentation/testcases/ftp).
 
 ### Collecting predicate values
-- Build the client-server framework from [instrumentation/testcases/ftp](instrumentation/testcases/ftp) -
+- Build the client-server framework from [`instrumentation/testcases/ftp`](instrumentation/testcases/ftp) -
   ```
   make
   ```
   **NOTE:** Ignore the generated warnings.
 
-- Start the server from [instrumentation/testcases/ftp](instrumentation/testcases/ftp) -
+- Start the server from [`instrumentation/testcases/ftp`](instrumentation/testcases/ftp) -
   ```
   ./server_exe <server_ip> <server_port>
   ```
 
-- From [instrumentation](instrumentation), execute -
+- From [`instrumentation`](instrumentation), execute -
   ```
   ./main.sh <server_ip> <server_port>
   ```
