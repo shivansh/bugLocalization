@@ -1,0 +1,166 @@
+Socket instantiated
+Error while connecting socket: Child process terminated with an error!
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 1
+0 1
+0 1
+1 0
+Socket instantiated
+Socket connected to server at port 6061
+Hello shivansh
++--------------------------+
+| Initiating file transfer |
++--------------------------+
++------------------------+
+| File transfer complete |
++------------------------+
+
+Disconnecting with server...
+0 0
+0 0
+0 0
+0 0
+0 0
+0 1
+0 1
+0 1
+1 0
+0 1
+1 0
+1 60
+1 0
+0 1
+0 1
+1 0
+0 0
+Socket instantiated
+Socket connected to server at port 6061
+Hello shivansh
++--------------------------+
+| Initiating file transfer |
++--------------------------+
++------------------------+
+| File transfer complete |
++------------------------+
+
+Disconnecting with server...
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 1
+0 1
+0 1
+0 1
+Socket instantiated
+Error while connecting socket: Child process terminated with an error!
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 1
+0 1
+0 1
+1 0
+Socket instantiated
+Socket connected to server at port 6061
+Hello shivansh
++--------------------------+
+| Initiating file transfer |
++--------------------------+
++------------------------+
+| File transfer complete |
++------------------------+
+
+Disconnecting with server...
+0 0
+0 0
+0 0
+0 0
+0 0
+0 1
+0 1
+0 1
+1 0
+0 1
+1 0
+1 60
+1 0
+0 1
+0 1
+1 0
+0 0
+Socket instantiated
+Error while connecting socket: Child process terminated with an error!
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 0
+0 1
+0 1
+0 1
+1 0
+Socket instantiated
+Socket connected to server at port 6061
+Hello shivansh
++----------------+
+| File not found |
+
+Disconnecting with server...
++----------------+
+0 0
+0 0
+0 0
+0 0
+0 0
+0 1
+0 1
+0 1
+1 0
+0 1
+0 1
+0 0
+0 0
+0 1
+0 1
+1 0
+0 0
