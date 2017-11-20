@@ -77,7 +77,7 @@ handle_server_connection(int  server_port,
         bzero(buffer, 5);
 
 #ifdef BUG3
-        sprintf(filename, "no-op");
+        sprintf(filename, "%s", "no-op");
 #endif
 
         sprintf(buffer, "%s", filename);
