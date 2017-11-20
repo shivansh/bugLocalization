@@ -9,3 +9,5 @@ a.out
 output.csv
 server_exe
 client_exe
+__pycache__
+.vscode
