@@ -76,9 +76,6 @@ handle_server_connection(int  server_port,
         printf("%s\n", buffer);
         bzero(buffer, 5);
 
-        printf("Enter the filename: ");
-        scanf("%s", filename);
-
 #ifdef BUG3
         sprintf(filename, "no-op");
 #endif
@@ -141,8 +138,8 @@ main(int argc, char **argv)
     /* Handle interrupts */
     signal(SIGINT, int_handler);
 
-    if (argc != 3) {
-        fprintf(stderr, "Usage: ./client username:password@<server_ip> <port>\n");
+    if (argc != 4) {
+        fprintf(stderr, "Usage: ./client username:password@<server_ip> <port> filename\n");
         exit(EXIT_FAILURE);
     }
 
@@ -188,7 +185,7 @@ main(int argc, char **argv)
          * with the server while parent process 'wait()'s on it.
          */
         handle_server_connection(server_port, server_ip,
-                                 username, password, filename);
+                                 username, password, argv[3]);
         close_sock(sockfd, "server");
     } else {
         /*

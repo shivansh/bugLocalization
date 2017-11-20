@@ -98,8 +98,6 @@ void handle_server_connection(int server_port,char *server_ip,char *username,cha
 {
       printf("%s\n",buffer);
       bzero(buffer,5);
-      printf("Enter the filename: ");
-      scanf("%s",filename);
 #ifdef BUG3
 #endif
       sprintf(buffer,"%s",filename);
@@ -170,10 +168,10 @@ int main(int argc,char **argv)
   setlinebuf(stdout);
 /* Handle interrupts */
   signal(2,int_handler);
-  if (argc != 3) {
+  if (argc != 4) {
     increment_if(13);
 {
-      fprintf(stderr,"Usage: ./client username:password@<server_ip> <port>\n");
+      fprintf(stderr,"Usage: ./client username:password@<server_ip> <port> filename\n");
       exit(1);
     }
   }
@@ -222,7 +220,7 @@ int main(int argc,char **argv)
          * This is the child process. It establishes a connection
          * with the server while parent process 'wait()'s on it.
          */
-        handle_server_connection(server_port,server_ip,username,password,filename);
+        handle_server_connection(server_port,server_ip,username,password,argv[3]);
         close_sock(sockfd,"server");
       }
     }
