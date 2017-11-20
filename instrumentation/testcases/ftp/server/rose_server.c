@@ -28,11 +28,17 @@ uint16_t sockfd;
 struct sockaddr_in client;
 char buffer[1024];
 
+void instrumented_exit(int status)
+{
+  evaluate();
+  exit(status);
+}
+
 void int_handler()
 {
 /* Handle SIGINT (Ctrl+C). */
   close(sockfd);
-  exit(1);
+  instrumented_exit(1);
 }
 
 char *read_line(FILE *fp)
@@ -201,7 +207,7 @@ void handle_client_connection(uint16_t sockfd)
         bzero(buffer,7);
         if (!safe_read(sockfd,buffer)) {
           increment_if(15);
-          exit(0);
+          instrumented_exit(0);
         }
          else 
           increment_else(15);
@@ -242,7 +248,7 @@ int main(int argc,char **argv)
     increment_if(17);
 {
       fprintf(stderr,"Usage: ./server <IP> <PORT>\nExiting!\n");
-      exit(1);
+      instrumented_exit(1);
     }
   }
    else 
@@ -262,7 +268,7 @@ int main(int argc,char **argv)
       increment_if(19);
 {
         fprintf(stderr,"Socket accept unsuccessful: ");
-        exit(1);
+        instrumented_exit(1);
       }
     }
      else 
@@ -273,7 +279,7 @@ int main(int argc,char **argv)
 {
         fprintf(stderr,"Error on fork: ");
         close(client_sockfd);
-        exit(1);
+        instrumented_exit(1);
       }
     }
      else {
@@ -284,7 +290,7 @@ int main(int argc,char **argv)
 /* This is the child process. */
           handle_client_connection(client_sockfd);
           close(client_sockfd);
-          exit(0);
+          instrumented_exit(0);
         }
       }
        else {

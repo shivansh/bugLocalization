@@ -127,18 +127,38 @@ void SimpleInstrumentation::visit(SgNode *astNode)
 
         std::vector<SgNode*> funcDefList = NodeQuery::querySubTree(globalScope, V_SgFunctionDefinition);
         std::vector<SgNode*>::iterator iter;
+        SgFunctionDefinition *cur_def;
+        SgBasicBlock *body;
+        SgExprStatement *callStmt1;
+
+        // Add call to 'evaluate()' in 'instrumented_exit()'.
+        // This will enable the server to print the predicate
+        // values before exiting.
+        for (iter = funcDefList.begin(); iter != funcDefList.end(); iter++) {
+            cur_def = isSgFunctionDefinition(*iter);
+            if (cur_def->get_mangled_name().getString().substr(0, 17).compare("instrumented_exit"))
+                continue;
+
+            ROSE_ASSERT(cur_def);
+            body = cur_def->get_body();
+            // Build the call statement for each place
+            callStmt1 = buildFunctionCallStmt("evaluate", buildIntType(), buildExprListExp(), body);
+
+            // Instrument the function 'instrumented_exit()'
+            prependStatement(callStmt1, body);
+        }
 
         for (iter = funcDefList.begin(); iter != funcDefList.end(); iter++) {
-            SgFunctionDefinition *cur_def = isSgFunctionDefinition(*iter);
+            cur_def = isSgFunctionDefinition(*iter);
             if (cur_def->get_mangled_name().getString().substr(0, 4).compare("main"))
                 continue;
 
             ROSE_ASSERT(cur_def);
-            SgBasicBlock *body = cur_def->get_body();
+            body = cur_def->get_body();
             // Build the call statement for each place
-            SgExprStatement *callStmt1 = buildFunctionCallStmt("evaluate", buildIntType(), buildExprListExp(), body);
+            callStmt1 = buildFunctionCallStmt("evaluate", buildIntType(), buildExprListExp(), body);
 
-            // Instrument the function
+            // Instrument the function 'main()'
             SgFunctionDeclaration *mainFunc = findMain(globalScope);
             SgBasicBlock *main_body = mainFunc->get_definition()->get_body();
             pushScopeStack(main_body);

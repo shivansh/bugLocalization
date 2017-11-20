@@ -9,11 +9,17 @@ struct sockaddr_in client;
 char buffer[BUFSIZE];
 
 void
+instrumented_exit(int status)
+{
+    exit(status);
+}
+
+void
 int_handler()
 {
     /* Handle SIGINT (Ctrl+C). */
     close(sockfd);
-    exit(EXIT_FAILURE);
+    instrumented_exit(EXIT_FAILURE);
 }
 
 char*
@@ -153,7 +159,7 @@ handle_client_connection(uint16_t sockfd)
             send(sockfd, buffer, BUFSIZE, 0);
             bzero(buffer, 7);
             if (!safe_read(sockfd, buffer))
-                exit(EXIT_SUCCESS);
+                instrumented_exit(EXIT_SUCCESS);
 
             safe_write(buffer, strlen(buffer), user_fp);
 
@@ -191,7 +197,7 @@ main(int argc, char **argv)
 
     if (argc != 3) {
         fprintf(stderr, "Usage: ./server <IP> <PORT>\nExiting!\n");
-        exit(EXIT_FAILURE);
+        instrumented_exit(EXIT_FAILURE);
     }
 
     port = atoi(argv[2]);
@@ -207,7 +213,7 @@ main(int argc, char **argv)
 
         if (client_sockfd < 0) {
             fprintf(stderr, "Socket accept unsuccessful: ");
-            exit(EXIT_FAILURE);
+            instrumented_exit(EXIT_FAILURE);
         }
 
         printf("\n+-------------------------------------+\n"
@@ -217,12 +223,12 @@ main(int argc, char **argv)
         if ((pid = fork()) < 0) {
             fprintf(stderr, "Error on fork: ");
             close(client_sockfd);
-            exit(EXIT_FAILURE);
+            instrumented_exit(EXIT_FAILURE);
         } else if (pid == 0) {
             /* This is the child process. */
             handle_client_connection(client_sockfd);
             close(client_sockfd);
-            exit(EXIT_SUCCESS);
+            instrumented_exit(EXIT_SUCCESS);
         } else {
             /*
              * This is the parent process.
