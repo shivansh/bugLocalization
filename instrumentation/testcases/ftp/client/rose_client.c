@@ -36,6 +36,7 @@ void handle_server_connection(int server_port,char *server_ip,char *username,cha
   char buffer[1024];
   FILE *fp;
   struct sockaddr_in server;
+  char base_dir[256] = "client/client_files/";
   sockfd = make_socket(server_ip,server_port,&server);
   bzero(buffer,1024);
 #ifdef BUG1
@@ -99,7 +100,6 @@ void handle_server_connection(int server_port,char *server_ip,char *username,cha
       printf("%s\n",buffer);
       bzero(buffer,5);
 #ifdef BUG3
-      sprintf(filename,"%s","no-op");
 #endif
       sprintf(buffer,"%s",filename);
       send(sockfd,buffer,1024,0);
@@ -114,7 +114,8 @@ void handle_server_connection(int server_port,char *server_ip,char *username,cha
       if (!strncmp(buffer,"Initiating",10)) {
         increment_if(10);
 {
-          fp = fopen(filename,"w");
+          strcat(base_dir,filename);
+          fp = fopen(base_dir,"w");
 #ifdef BUG4
 #endif
           printf("+--------------------------+\n| Initiating file transfer |\n+--------------------------+\n");

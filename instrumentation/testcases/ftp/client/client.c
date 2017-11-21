@@ -21,6 +21,7 @@ handle_server_connection(int  server_port,
     char buffer[BUFSIZE];
     FILE *fp;
     struct sockaddr_in server;
+    char base_dir[256] = "client/client_files/";
 
     sockfd = make_socket(server_ip, server_port, &server);
     bzero(buffer, BUFSIZE);
@@ -89,7 +90,8 @@ handle_server_connection(int  server_port,
 
         /* Receive file transfer initiation cue. */
         if (!strncmp(buffer, "Initiating", 10)) {
-            fp = fopen(filename, "w");
+            strcat(base_dir, filename);
+            fp = fopen(base_dir, "w");
 
 #ifdef BUG4
             fp = NULL;
