@@ -42,7 +42,7 @@ _**NOTE: The current state of the README is minimal. This will be updated proper
 ### Drawing inferences from the collected data
 Execute the following from project root -
 ```
-python parse_output.py
+python infer.py
 ```
 
 ## References
