@@ -5,7 +5,7 @@ def get_A():
 
     eps = 1e-4
 
-    with open("./output_data/output.txt",'r') as f:
+    with open("../sample/output.txt",'r') as f:
         nruns = 0
         npred = 0
         successful_runs = 0
@@ -22,7 +22,7 @@ def get_A():
         npred = npred//(2*nruns - failing_case_separate)
 
     print(npred,nruns)
-    with open("./output_data/output.txt",'r') as f:
+    with open("../sample/output.txt",'r') as f:
         true = np.zeros([npred,nruns]) + eps
         false = np.zeros([npred,nruns]) + eps
         run_iter = -1
@@ -43,13 +43,13 @@ def get_A():
 
 
 def get_run_status():
-    with open("./output_data/output.txt",'r') as f:
+    with open("../sample/output.txt",'r') as f:
         nruns = 0
         for line in f:
             if "Socket instantiated" in line:
                 nruns += 1
 
-    with open("./output_data/output.txt",'r') as f:
+    with open("../sample/output.txt",'r') as f:
         run_status = np.zeros([nruns])
         run_iter = 0
         successful_runs = 0
