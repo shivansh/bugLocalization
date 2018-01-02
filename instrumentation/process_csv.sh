@@ -6,6 +6,8 @@
 # Second argument: input C file
 # Result is stored in the file: output.csv
 
+set -euo pipefail
+
 i=1
 initial_csv="initial.csv"
 initial_output="initial_output.csv"
